@@ -1,9 +1,11 @@
 theory Tot_Unimod_graph
-  imports Totally_Unimodular Even_More_Graph_2 
+  imports Totally_Unimodular Even_More_Graph_2
 begin
 
 context gram_schmidt_floor
 begin
+
+
 
 definition incidence_mat :: "'b set set  \<Rightarrow> 'a mat" where 
   "incidence_mat E = mat (card (Vs E)) (card E) 
@@ -750,7 +752,7 @@ proof -
   have "gram_schmidt_floor.int_polyh (card E) 
             (gram_schmidt_floor.pos_polyhedron (card E) (incidence_mat E) (1\<^sub>v (card (Vs E))))"
     using assms gram_schmidt_floor.matching_polyh_int by blast
-  have "\<forall> F. gram_schmidt.face (card E) (gram_schmidt_floor.pos_polyhedron (card E) (incidence_mat E) (1\<^sub>v (card (Vs E)))) F
+  have 0: "\<forall> F. gram_schmidt.face (card E) (gram_schmidt_floor.pos_polyhedron (card E) (incidence_mat E) (1\<^sub>v (card (Vs E)))) F
            \<longrightarrow> gram_schmidt_floor.int_polyh (card E) F"
   proof safe
     fix F
@@ -781,8 +783,9 @@ proof -
     show "gram_schmidt_floor.int_polyh (card E) F"
       using gram_schmidt_floor.int_poly_face_int[OF 5 6 3 4 1 2] by auto
   qed
-  then show ?thesis using gram_schmidt_floor.perfect_matching_polyhedron_face 
-    by (metis Union_disjoint Union_empty carrier_matI dim_col_incidence_mat dim_row_incidence_mat 
+  show ?thesis 
+    using gram_schmidt_floor.perfect_matching_polyhedron_face
+    by (metis 0 Union_disjoint Union_empty carrier_matI dim_col_incidence_mat dim_row_incidence_mat 
               gram_schmidt.convex_hull_empty(1) gram_schmidt.integer_hull_def 
               gram_schmidt_floor.int_polyh_def mem_simps(2) one_carrier_vec)
 qed

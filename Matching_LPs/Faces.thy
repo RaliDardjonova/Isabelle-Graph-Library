@@ -6,6 +6,7 @@ theory Faces
     Jordan_Normal_Form.Matrix
     Jordan_Normal_Form.DL_Rank_Submatrix
     Subsystems
+    Primal_Dual_Bipartite_Matching.Bipartite_Matching_LP
 begin 
 (*
 
@@ -30,15 +31,14 @@ lemma cong_mk_mat: assumes "\<And> i j. i < nr \<Longrightarrow> j < nc \<Longri
 typedef 'a mat = "{(nr, nc, mk_mat nr nc f) | nr nc f :: nat \<times> nat \<Rightarrow> 'a. True}"
   by auto
 *)
-definition
-  one_vec :: "nat \<Rightarrow> 'a :: one vec" ("1\<^sub>v")
-  where "1\<^sub>v n = vec n (\<lambda> i. 1)"
 
+(*
 lemma one_carrier_vec[simp]: "1\<^sub>v n \<in> carrier_vec n"
   unfolding one_vec_def carrier_vec_def by auto
 
 lemma index_one_vec[simp]: "i < n \<Longrightarrow> 1\<^sub>v n $ i = 1" "dim_vec (1\<^sub>v n) = n"
   unfolding one_vec_def by auto
+*)
 
 lemma vec_of_dim_1[simp]: "dim_vec v = 0 \<longleftrightarrow> v = 1\<^sub>v 0" by auto
 
